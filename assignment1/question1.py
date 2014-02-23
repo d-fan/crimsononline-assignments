@@ -7,6 +7,8 @@ objectives
     - work with the file system
 """
 
+import re
+
 def common_words(filename):
     """question 1a
 
@@ -14,7 +16,11 @@ def common_words(filename):
     should open the file, count the number of occurrences of each word, and
     return a sorted list of the most common words.
     """
-    pass
+
+    """This function assumes that 'words' are strings of alphabetical characters, i.e. this function ignores punctuation"""
+
+    return common_words_min(filename, 0)
+
 
 def common_words_min(filename, min_chars):
     """question 1b
@@ -22,7 +28,18 @@ def common_words_min(filename, min_chars):
     Modify this function to take a second argument that specifies the
     minimum number of characters long a word can be to be counted.
     """
-    pass
+    wordPattern = re.compile('[a-zA-Z]{' + str(min_chars) + ',}')
+    occurance = dict()
+    with open(filename, 'r') as f:
+        contents = f.read()
+    words = wordPattern.finditer(contents)
+    for wordMatch in words:
+        word = wordMatch.group(0).lower()
+        if word in occurance:
+            occurance[word] += 1
+        else:
+            occurance[word] = 1
+    return sorted(occurance, key=occurance.get, reverse=True)
 
 def common_words_tuple(filename, min_chars):
     """question 1c
@@ -32,7 +49,18 @@ def common_words_tuple(filename, min_chars):
         (word, number of occurrences)
     Of course, the list of tuples should still be sorted as in part a.
     """
-    pass
+    wordPattern = re.compile('[a-zA-Z]{' + str(min_chars) + ',}')
+    occurance = dict()
+    with open(filename, 'r') as f:
+        contents = f.read()
+    words = wordPattern.finditer(contents)
+    for wordMatch in words:
+        word = wordMatch.group(0).lower()
+        if word in occurance:
+            occurance[word] += 1
+        else:
+            occurance[word] = 1
+    return sorted(occurance.items(), key=lambda item:item[1], reverse=True)
 
 def common_words_safe(filename, min_chars):
     """question 1d
@@ -40,4 +68,19 @@ def common_words_safe(filename, min_chars):
     Modify your function so that it catches the IOError exception and prints
     a friendly error message.
     """
-    pass
+    wordPattern = re.compile('[a-zA-Z]{' + str(min_chars) + ',}')
+    occurance = dict()
+    try:
+        with open(filename, 'r') as f:
+            contents = f.read()
+    except IOError as e:
+            print "IOError {0}: {1}".format(e.errno, e.strerror)
+            return
+    words = wordPattern.finditer(contents)
+    for wordMatch in words:
+        word = wordMatch.group(0).lower()
+        if word in occurance:
+            occurance[word] += 1
+        else:
+            occurance[word] = 1
+    return sorted(occurance.items(), key=lambda item:item[1], reverse=True)
