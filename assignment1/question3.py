@@ -5,7 +5,7 @@ Question 3 - Just a little feedback for us
 '''
 Question 3a: How long did this assignment take you?
 '''
-time_in_minutes = 0 
+time_in_minutes = 83
 
 '''
 Question 3b: any feedback for us?
