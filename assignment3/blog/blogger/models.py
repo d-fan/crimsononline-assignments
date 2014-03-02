@@ -2,6 +2,7 @@ from django.db import models
 
 # Class that represents authors
 class Author(models.Model):
+    title = models.CharField(max_length=128, blank=False, null=False)
     first = models.CharField(max_length=128, blank=False, null=False)
     last = models.CharField(max_length=128, blank=False, null=False)
 
@@ -13,7 +14,7 @@ class Author(models.Model):
 
     # String representation of author
     def __unicode__(self):
-        return self.first + ' ' + self.last
+        return self.title + ' ' + self.first + ' ' + self.last
 
 class BlogPost(models.Model):
     # Relates each BlogPost to exactly one Author

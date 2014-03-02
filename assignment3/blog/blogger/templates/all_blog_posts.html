@@ -2,9 +2,12 @@
 {% block content %}
     <h1>Blog Posts</h1>
     <ul>
-        {% for post in posts %}
+        {% for post,blurb in posts %}
             <li>
                 <p><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></p>
+                <p>
+                    {{ blurb }}
+                </p>
                 <p>
                     By <a href="{{ post.author.get_absolute_url }}">
                         {{ post.author }}

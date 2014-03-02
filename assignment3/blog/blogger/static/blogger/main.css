@@ -1,0 +1,43 @@
+/*body {
+	background-color: aqua;
+}*/
+html {
+	background-color: teal;
+	height: 100%;
+	margin: 0px;
+}
+
+body {
+	font-family: Tahoma, sans-serif;
+	width: 640px;
+	min-height: 100%;
+	margin: 0 auto;
+	background-color: #FFFFFF;
+	padding: 1em;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	color: #808080;
+}
+
+a:hover, a:active {
+	color: #000000;
+	text-decoration: underline;
+}
+
+ul {
+	padding-left: 1em;
+}
+
+li {
+	list-style-type: none;
+}
+
+h1, h2{
+	margin-top: 0px;
+}
+
+p {
+	text-align: justify;
+}
